@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Car List</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1>Here is the current car information</h1>
+      @if (Model.Count == 0)
+      {
+        <p>We're sorry, but we’re out of stock!</p>
+      }
+
+      @foreach (var car in Model)
+      {
+        <h4>@car.GetModel()</h4>
+        <h5><i>@car.GetDescription()</i></h5>
+        <p>Cost: $@car.GetCost()</p>
+        <p>Miles: @car.GetMiles() miles</p>
+      }
+    </div>
+    <div class="well">
+      <form action="/" method="post">
+        <button type="submit" name="add">Add Another</button>
+      </form>
+      <form action="/list/clear" method="post">
+        <button type="submit" name="clear">Clear List</button>
+      </form>
+    </div>
+
+  </body>
+</html>
