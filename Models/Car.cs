@@ -43,8 +43,15 @@ namespace Cars.Models
 
   public void Save()
   {
-    _instances.Add(this);
-  }
+      if (_description.Length == 0 || _model.Length == 0 )
+        return;
+
+      foreach (var car in _instances)
+        if (_description == car._description && _model == car._model && _cost == car._cost && _miles == car._miles)
+          return;
+
+      _instances.Add(this);
+    }
     public static List<Car> GetAll()
     {
       return _instances;
